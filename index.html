@@ -10,11 +10,14 @@
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap');
     .attribution { font-size: 11px; text-align: center; }
     .attribution a { color: hsl(228, 45%, 44%); }
     :root{
       --mainwidth: 70%;
+      font-family: 'Inter', sans-serif;
     }
+
     *{
       margin: 0;
       padding: 0;
@@ -25,18 +28,25 @@
       text-decoration: none;
     }
 
-    header{
-      border: solid pink 1px;
+    body{
+      position: relative;
+    }
+
+    .main-width{
+      max-width: var(--mainwidth);
+      margin: 0 auto;
+      padding: 15px 0;
     }
 
     nav{
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border: solid green 1px;
-      max-width: var(--mainwidth);
-      margin: 0 auto;
-      padding: 15px 0;
+      width: 100%;
+    }
+
+    .logo:hover{
+      cursor: pointer;
     }
 
     .icon-close, .icon-hamburger{
@@ -48,7 +58,163 @@
     .menu p{cursor: pointer;}
     .menu p:hover{color: rgb(252, 97, 97);}
 
-    @media only screen and (max-width: 1000px){
+    section{
+      display: grid;
+      grid-template-areas: "leftside rightside";
+      grid-template-columns: 1fr 0.5fr;
+      column-gap: 20px;
+      margin-top: 20px;
+    }
+
+    .first-container{
+      grid-area: leftside;
+      width: 100%;
+      display: grid;
+      grid-template-areas: "picture picture"
+                           "article article";
+      grid-template-columns: 1fr 1fr;
+      /* grid-template-rows: 1fr 1fr; */
+      row-gap: 10px;
+      column-gap: 10px;
+    }
+
+    .first-container img{
+      width: 100%;
+      height: 100%;
+      grid-area: picture;
+    }
+
+    .first-container .article{
+      grid-area: article;
+      display: grid;
+      grid-template-areas: "header detail";
+      grid-template-columns: 1fr 1fr;
+      column-gap: 10px;
+    }
+
+    .first-container .article h1{
+      grid-area: header;
+      font-size: 55px;
+    }
+
+    .first-container .article .content{
+      grid-area: detail;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-size: 22px;
+    }
+
+    .first-container .article .btn{
+      display: flex;
+      text-align: center;
+      background: rgb(247, 92, 92);
+      color: white;
+      font-size: 15px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      max-width: 100%;
+      width: fit-content;
+      height: fit-content;
+      padding: 4% 6%;
+      margin-top: 8%;
+    }
+
+    .first-container .article .btn:hover{
+      cursor: pointer;
+      background: rgb(0, 0, 22);
+    }
+
+    .second-container{
+      grid-area: rightside;
+      width: 100%;
+      background-color: rgb(0, 0, 22);
+      padding-bottom: 40px;
+    }
+
+    .second-container div{
+      width: 80%;
+      margin: 0 auto;
+      height: 100%;
+    }
+
+    .second-container div h2{
+      margin-top: 20px;
+      color: rgb(255, 210, 63);
+    }
+
+    .second-container div h3{
+      margin-top: 20px;
+      color: white;
+    }
+
+    .second-container div h3:hover{
+      cursor: pointer;
+      color: rgb(255, 210, 63);
+    }
+
+    .second-container div p{
+      margin-top: 10px;
+      color: white;
+    }
+
+    .second-container div .line{
+      width: 100%;
+      height: 0px;
+      margin-top: 20px;
+      border: 1px solid white;
+    }
+
+    footer{
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat( auto-fit, minmax(200px, 1fr) );
+      column-gap: 10px;
+    }
+
+    footer .footer-container{
+      display: grid;
+      grid-template-areas: "footer-left footer-right";
+      grid-template-columns: 0.5fr 1fr;
+      column-gap: 10px;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    footer .footer-container img{
+      grid-area: footer-left;
+      width: 100%;
+      height: 100%;
+    }
+
+    footer .footer-container .footer-article{
+      grid-area: footer-right;
+    }
+
+    footer .footer-container .footer-article h3, footer .footer-container .footer-article p{
+      color: rgb(173, 165, 165);
+    }
+
+    footer .footer-container .footer-article h4{
+      font-weight: 700;
+      color: black;
+    }
+
+    footer .footer-container .footer-article h4:hover{
+      color: orange;
+    }
+
+    footer .footer-container .footer-article h4:hover{
+      cursor: pointer;
+      color: rgb(252, 97, 97);
+    }
+
+    footer .footer-container .footer-article h3, footer .footer-container .footer-article h4, footer .footer-container .footer-article p{
+      margin-bottom: 10px;
+    }
+
+
+    @media only screen and (max-width: 768px){
       .icon-close{display: none;}
       .icon-close.toggle{display: flex;cursor: pointer;position: relative;z-index: 999;}
       .icon-hamburger{display: flex;cursor: pointer;position: relative;z-index: 999;}
@@ -57,79 +223,151 @@
       .menu{display: none;}
       .menu.toggle{
         display: flex;
-        align-items: center;
-        background: white;
+        align-items: start;
+        position: absolute;
+        background: rgb(255, 255, 255);
         top: 0;
-        bottom: 0;
         right: 0;
+        bottom: 0;
         width: 55vw;
-        padding-top: 10vh;
+        padding-top: 15vh;
+        padding-left: 10vw;
         flex-direction: column;
-        position: fixed;
         gap: 20px;
+        z-index: 998;
       }
-    } 
 
+      .overlay{
+        display: flex;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: rgba(14, 11, 11, 0);
+        z-index: 900;
+      }
+      
+      /* Don't space between .overlay and .show ! */
+      .overlay.show{
+        background: rgba(14, 11, 11, 0.5);
+      }
 
+      section{
+        display: flex;
+        flex-direction: column;
+      }
 
+      .second-container{
+        margin-top: 20px;
+      }
+
+      .first-container .article .content p{
+        font-size: 18px;
+      }
+    }
+
+    @media only screen and (max-width: 375px){
+      .first-container .article{
+        display: flex;
+        flex-direction: column;
+      }
+
+      .first-container .article .content{
+        margin-top: 5px;
+      }
+
+      footer{
+        display: flex;
+        flex-direction: column;
+      }
+    }
   </style>
 </head>
+
+
 <body>
+  <div class="main-width">
+    <header>
+      <nav>
+        <img class="logo" src="./assets/images/logo.svg" alt="">
+        <div class="menu">
+          <p href="">Home</p>
+          <p href="">New</p>
+          <p href="">Popular</p>
+          <p href="">Trending</p>
+          <p href="">Categories</p>
+        </div>
+        <img class = "icon-close" src="./assets/images/icon-menu-close.svg" alt="" width="30px">
+        <img class = "icon-hamburger" src="./assets/images/icon-menu.svg" alt="" width="30px">
+      </nav>
+    </header>
 
-  <header>
-    <nav>
-      <img class="logo" src="./assets/images/logo.svg" alt="">
-      <div class="menu">
-        <p href="">Home</p>
-        <p href="">New</p>
-        <p href="">Popular</p>
-        <p href="">Trending</p>
-        <p href="">Categories</p>
+    <div class="overlay"></div>
+
+    <section>
+      <div class="first-container">
+        <img src="./assets/images/image-web-3-desktop.jpg" alt="">
+        <div class="article">
+          <h1>The Bright Future of Web 3.0?</h1>
+          <div class="content">
+            <p>We dive into the next evolution of the web that claims to put the power of the platforms back into the hands of the people. 
+              But is it really fulfilling its promise?</p>
+            <div class="btn">
+              <h4>Read more</h4>
+            </div>
+          </div>
+        </div>
       </div>
-      <img class = "icon-close" src="./assets/images/icon-menu-close.svg" alt="" width="30px">
-      <img class = "icon-hamburger" src="./assets/images/icon-menu.svg" alt="" width="30px">
-    </nav>
-  </header>
+      <div class="second-container">
+        <div>
+          <h2>New</h2>
+          <h3>Hydrogen VS Electric Cars</h3>
+          <p>Will hydrogen-fueled cars ever catch up to EVs?</p>
+          <div class="line"></div>
+          <h3>The Downsides of AI Artistry</h3>
+          <p>What are the possible adverse effects of on-demand AI image generation?</p>
+          <div class="line"></div>
+          <h3>Is VC Funding Drying Up?</h3>
+          <p>Private funding by VC firms is down 50% YOY. We take a look at what that means.</p>
+        </div>
+      </div>
+    </section>
 
-  Home
-  New
-  Popular
-  Trending
-  Categories
+    <footer>
+      <div class="footer-container">
+        <img src="./assets/images/image-retro-pcs.jpg" alt="">
+        <div class="footer-article">
+          <h3>01</h3>
+          <h4>Reviving Retro PCs</h4>
+          <p>What happens when old PCs are given modern upgrades?</p>
+        </div>
+      </div>
 
-  The Bright Future of Web 3.0?
+      <div class="footer-container">
+        <img src="./assets/images/image-top-laptops.jpg" alt="">
+        <div class="footer-article">
+          <h3>02</h3>
+          <h4>Top 10 Laptops of 2022</h4>
+          <p>Our best picks for various needs and budgets.</p>
+        </div>
+      </div>
 
-  We dive into the next evolution of the web that claims to put the power of the platforms back into the hands of the people. 
-  But is it really fulfilling its promise?
-
-  Read more
-
-  New 
-
-  Hydrogen VS Electric Cars
-  Will hydrogen-fueled cars ever catch up to EVs?
-
-  The Downsides of AI Artistry
-  What are the possible adverse effects of on-demand AI image generation?
-
-  Is VC Funding Drying Up?
-  Private funding by VC firms is down 50% YOY. We take a look at what that means.
-
-  01
-  Reviving Retro PCs
-  What happens when old PCs are given modern upgrades?
-
-  02
-  Top 10 Laptops of 2022
-  Our best picks for various needs and budgets.
-
-  03
-  The Growth of Gaming
-  How the pandemic has sparked fresh opportunities.
+      <div class="footer-container">
+        <img src="./assets/images/image-gaming-growth.jpg" alt="">
+        <div class="footer-article">
+          <h3>03</h3>
+          <h4>The Growth of Gaming</h4>
+          <p>How the pandemic has sparked fresh opportunities.</p>
+        </div>
+      </div>
+    </footer>
   
+  </div>
+
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+    Coded by <a href="#">ps.woramet</a>.
   </div>
   <script src="scripts.js"></script>
 </body>
